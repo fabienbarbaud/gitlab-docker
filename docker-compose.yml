@@ -6,6 +6,7 @@ services:
       - "22:22"
       - "80:80"
       - "443:443"
+      - "5005:5005"
     volumes:
       - ./gitlab_home/data:/var/opt/gitlab
       - ./gitlab_home/logs:/var/log/gitlab
@@ -17,6 +18,8 @@ services:
         target: /omnibus_config.rb
     secrets:
       - gitlab_root_password
+    networks:
+      - cesi
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
     volumes:
@@ -24,9 +27,15 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+    networks:
+      - cesi
 configs:
   gitlab:
     file: ./gitlab.rb
 secrets:
   gitlab_root_password:
     file: ./root_password.txt
+
+networks:
+  cesi:
+    external: true
