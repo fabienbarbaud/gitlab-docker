@@ -7,10 +7,6 @@ services:
       - "80:80"
       - "443:443"
       - "5005:5005"
-    volumes:
-      - ./gitlab_home/data:/var/opt/gitlab
-      - ./gitlab_home/logs:/var/log/gitlab
-      - ./gitlab_home/config:/etc/gitlab
     environment:
       GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
     configs:
