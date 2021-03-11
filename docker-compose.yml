@@ -6,7 +6,6 @@ services:
       - "22:22"
       - "80:80"
       - "443:443"
-      - "5005:5005"
     environment:
       GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
     configs:
